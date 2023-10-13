@@ -158,3 +158,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # allauth configuration
 SITE_ID = 1
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_SESSION_REMEMBER = True # it means by default save the username and password of the user for future login attempts
