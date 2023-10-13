@@ -1,5 +1,17 @@
+{% extends '_base.html' %}
+
+
+{% block page_title %}
+Sign Up
+{% endblock page_title %}
+
+
+{% block content %}
+<h1>Sign Up</h1>
 <form action="" method='POST'>
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="sign up">
 </form>
+{% endblock content %}
+    
