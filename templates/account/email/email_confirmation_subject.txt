@@ -1,0 +1,14 @@
+{% load account%}
+
+{% user_display user as user_display %}
+
+{% load i18n %}
+{% autoescape off %}
+{% blocktrans %}
+sir {{user_display}}
+Hello from {{site.name}}
+
+If you requeted this email please click on the link below
+{{activate_url}}
+{% endblocktrans %}
+{% endautoescape %}
