@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     # local apps
     'accounts',
     'pages',
+    'products.apps.ProductsConfig',  # we could use like this too and it is the same with 'products'
 ]
 
 MIDDLEWARE = [
