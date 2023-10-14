@@ -23,4 +23,5 @@ urlpatterns = [
     # path('accounts/', include('accounts.urls')),
     # when we want to use allauth, we do not need above two lines
     path('accounts/', include('allauth.urls')),
+    path('products/', include('products.urls')),
 ]
