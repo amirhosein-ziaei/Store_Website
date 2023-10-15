@@ -3,10 +3,10 @@
 {% block content %}
 
 <h1>product list</h1>
-
-
 {% for product in products %}
-    {{product.title}}
+    <a href="{{product.get_absolute_url}}">
+        <h2>{{product.title}}</h2>
+    </a>
 {% endfor %}
     
 {% endblock content %}
