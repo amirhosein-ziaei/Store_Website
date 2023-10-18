@@ -1,6 +1,7 @@
 from typing import Any
 from django.shortcuts import render
 from django.views import generic
+from django.shortcuts import get_object_or_404, reverse
 
 from .models import Product, Comment
 from .forms import CommentForm
@@ -24,10 +25,15 @@ class ProductDetailView(generic.DetailView):
     
 class CommentCreateView(generic.CreateView):
     model = Comment
-    form = CommentForm
+    form_class = CommentForm
     
     def form_valid(self, form):
         obj = form.save(commit=False) # it means save the form and return me an object but does not save the form in database
         obj.author = self.request.user
+        product_id = int(self.kwargs['pk'])
+        product = get_object_or_404(Product, pk=product_id)
+        obj.product = product
         return super().form_valid(form)
     
+    # def get_success_url(self):
+    #     return reverse('product_list')
