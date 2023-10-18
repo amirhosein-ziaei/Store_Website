@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.query import QuerySet
 from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 
@@ -17,7 +18,10 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('product_detail', args=[self.pk])
     
-    
+class ActiveCommentManager(models.Manager):
+    def get_queryset(self) -> QuerySet:
+        return super(ActiveCommentManager, self).get_queryset().filter(active=True)
+
 
 class Comment(models.Model):
     PRODUCT_STARS = [
@@ -36,6 +40,10 @@ class Comment(models.Model):
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True) # it meand by default comments are approved 
+    
+    # manager
+    objects = models.Manager()
+    active_comments_manager = ActiveCommentManager()
     
     def get_absolute_url(self):
         return reverse("product_detail", args=[self.product.id])
