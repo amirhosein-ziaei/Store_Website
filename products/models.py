@@ -33,10 +33,10 @@ class Comment(models.Model):
          
     ]
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments') # product.comments for getting all the comments of this product
-    body = models.TextField()
+    body = models.TextField(verbose_name='comment text')
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments') # when we want to know all the comments of 
                                                         # a specific author, we can use user.comments (comments is because of related_name)
-    stars = models.CharField(max_length=10, choices=PRODUCT_STARS)
+    stars = models.CharField(max_length=10, choices=PRODUCT_STARS, verbose_name='score for product')
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True) # it meand by default comments are approved 
